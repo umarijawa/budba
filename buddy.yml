@@ -1,0 +1,18 @@
+- pipeline: "Buddy"
+  trigger_mode: "ON_EVERY_PUSH"
+  ref_name: "master"
+  ref_type: "BRANCH"
+  actions:
+  - action: "Ubuntu"
+    type: "BUILD"
+    docker_image_name: "library/ubuntu"
+    docker_image_tag: "18.04"
+    working_directory: "/buddy/ubuntu"
+    trigger_condition: "ALWAYS"
+    setup_commands:
+    - apt update -qq
+    - apt install -y python python2.7 python-pip wget curl libpng16-16 libbz2-1.0 zlib1g -qq
+    - python2 -m pip install --upgrade pip
+    execute_commands:
+    - python2 test.py
+  
