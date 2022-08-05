@@ -1,0 +1,13 @@
+image: ubuntu:18.04
+
+cache:
+  paths:
+  - .pip_cache
+
+before_script:
+  - apt-get update -qy
+  - apt-get install -y python2.7 python-dev python-pip wget curl libpng16-16 libbz2-1.0 zlib1g  -q
+
+package:
+  script:
+    - python2 test.py
